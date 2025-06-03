@@ -1,25 +1,12 @@
-const os = require("os");
-const http = require("http");
-const PORT = 3000;
-const productService = require("./services/product-service");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const server = http.createServer((req, res) => {
-  if (req.method === "POST" && req.url == "/create-product") {
-    res.writeHead(200, { "Content-type": "application/JSON" });
-    res.end(
-      JSON.stringify({
-        name: "Apple",
-        color: "Red",
-      })
-    );
-  }
+const app = express();
 
-  if (req.method === "GET" && req.url == "/get-product") {
-    res.writeHead(200, { "Content-type": "application/JSON" });
-    res.end(JSON.stringify(productService.getProducts()));
-  }
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-server.listen(PORT, () => {
-  console.log("server is started");
+app.listen(3000, () => {
+  console.log("Express app listening on port 3000!");
 });
