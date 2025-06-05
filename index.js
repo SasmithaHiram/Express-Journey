@@ -1,5 +1,6 @@
 require("dotenv").config();
 const morgan = require("morgan");
+const config = require("config");
 const port = process.env.PORT;
 const express = require("express");
 const app = express();
@@ -11,6 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 const helmet = require("helmet");
 app.use(helmet());
+
+console.log("Application Name" + config.get("name"));
+console.log("Application Email" + config.get("mail.host"));
 
 if (app.get("env") === "development") {
   app.use(morgan("tiny"));
