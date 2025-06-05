@@ -1,9 +1,17 @@
 require("dotenv").config();
+const morgan = require('morgan');
 const port = process.env.PORT;
 const express = require("express");
 const app = express();
 app.use(express.json());
 const Joi = require("joi");
+const logger = require("./logger");
+app.use(logger);
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('public'));
+const helmet = require('helmet');
+app.use(helmet())
+app.use(morgan('tiny'));
 
 const courses = [
   { id: 1, name: "Sinhala" },
