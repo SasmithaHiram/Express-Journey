@@ -41,10 +41,21 @@ async function createCourse() {
 createCourse();
 
 async function getAll() {
-  const cousers = await Course.find({ author: "Sasmitha", isPublished: true })
-    .limit(2)
-    .sort({ name: -1 })
-    .select({ name: 1, tags: 1 });
+  // eq (equal)
+  // ne (not equal)
+  // gt (greater than)
+  // gte (greater than or equal to)
+  // lt (less than)
+  // lte (less than or equal)
+  // in
+  // nin (not in)
+
+  const cousers = await Course.find({ price: { $in: [10, 15, 20] } });
+  // find({price: {$gt: 10, $lte: 20}})
+  // find({ author: "Sasmitha", isPublished: true })
+  //   .limit(2)
+  //   .sort({ name: -1 })
+  //   .select({ name: 1, tags: 1 });
   console.log(cousers);
 }
 
