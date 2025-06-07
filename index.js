@@ -50,7 +50,11 @@ async function getAll() {
   // in
   // nin (not in)
 
-  const cousers = await Course.find({ price: { $in: [10, 15, 20] } });
+  const cousers = await Course.find().or([
+    { author: "Sasmitha" },
+    { isPublished: "true" },
+  ]);
+  // find({ price: { $in: [10, 15, 20] } });
   // find({price: {$gt: 10, $lte: 20}})
   // find({ author: "Sasmitha", isPublished: true })
   //   .limit(2)
