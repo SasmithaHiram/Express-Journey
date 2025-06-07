@@ -53,11 +53,11 @@ async function getAll() {
   const cousers = await Course
     // Starts with Sasmitha
     .find({ author: /^Sasmitha/ })
-
+    // .count();
     // Ends with Hiram
-    .find({ author: /Hiram$/i });
+    //.find({ author: /Hiram$/i });
 
-  // COntains Sasmitha
+  // Contains Sasmitha
   //.find({author: /.*Sasmitha*/i})
 
   // find().or([
