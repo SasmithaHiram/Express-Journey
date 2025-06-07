@@ -50,10 +50,20 @@ async function getAll() {
   // in
   // nin (not in)
 
-  const cousers = await Course.find().or([
-    { author: "Sasmitha" },
-    { isPublished: "true" },
-  ]);
+  const cousers = await Course
+    // Starts with Sasmitha
+    .find({ author: /^Sasmitha/ })
+
+    // Ends with Hiram
+    .find({ author: /Hiram$/i });
+
+  // COntains Sasmitha
+  //.find({author: /.*Sasmitha*/i})
+
+  // find().or([
+  //   { author: "Sasmitha" },
+  //   { isPublished: "true" },
+  // ]);
   // find({ price: { $in: [10, 15, 20] } });
   // find({price: {$gt: 10, $lte: 20}})
   // find({ author: "Sasmitha", isPublished: true })
