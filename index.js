@@ -1,18 +1,17 @@
-import express, { json } from "express";
 const app = express();
+import express, { json } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 const port = process.env.PORT;
-import genres from "./routes/genres.js";
-import mongoose, { connect, Schema, model } from "mongoose";
+import mongoose, { connect, Schema } from "mongoose";
 
 app.use(json());
-app.use("/api/genre", genres);
+
 app.listen(port, () => {
   console.log(`EXPRESS APP IS RUNNING : ${port}`);
 });
 
-connect("mongodb://localhost:27017/playgorund")
+connect("mongodb://localhost:27017/test")
   .then(() => {
     console.log("CONNECTED TO MONGODB...");
   })
@@ -40,3 +39,13 @@ async function createCourse() {
 }
 
 createCourse();
+
+async function getAll() {
+  const cousers = await Course.find({ author: "Sasmitha", isPublished: true })
+    .limit(2)
+    .sort({ name: -1 })
+    .select({ name: 1, tags: 1 });
+  console.log(cousers);
+}
+
+getAll();
